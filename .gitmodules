@@ -1,0 +1,3 @@
+[submodule "src/jsGameSoup"]
+	path = src/jsGameSoup
+	url = git://github.com/ameyp/jsGameSoup.git
