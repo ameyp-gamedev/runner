@@ -1,53 +1,41 @@
 // temporary, need to change this to an object too (probably)
 var createLevel = function(gs, spec) {
-    var name = spec.name;
-    var currentRoom = null;
     var player = null;
 
-    var i;
+    var hurdles = createHurdles(gs,
+				spec.hurdles,
+				gs.height - spec.height);
+    var floor = Floor(gs,
+		      spec.hurdles[spec.hurdles.length - 1],
+		      spec.height,
+		      spec);
+    gs.addEntity(floor);
 
-    var rooms = createRooms(gs, spec.rooms);
-
-    for (i = 0; i < rooms.length; i += 1) {
-	if (rooms[i].isLevelStart()) {
-	    currentRoom = rooms[i];
-	    break;
-	}
-    }
-
-    if (currentRoom === null) {
-	throw "Unable to find level start";
-    }
-
-    currentRoom.activate(gs, null);
-
-    player = Player(gs);
+    player = Player(gs, spec.origin, gs.height - spec.height);
     gs.addEntity(player);
     gs.launch();
 
     var update = function() {
-	var newRoom,
-            exitPortal,
-            spawnPoint;
+	var i = 0;
 
-	collide.aabb([player], currentRoom.getBlocks());
-	collide.aabb([player], currentRoom.getTriggers());
-	collide.aabb([player], currentRoom.getTargets());
+	collide.aabb([player], [floor]);
+	collide.aabb([player], [hurdles]);
 
-	if (player.pos[0] < 0 ||
-	    player.pos[0] > gs.width ||
-	    player.pos[1] < 0 ||
-	    player.pos[1] > gs.height) {
-
-	    exitPortal = currentRoom.findPortalFromPos(player.pos[0], player.pos[1]);
-	    newRoom = findRoomFromPortal(rooms, currentRoom.getName(), exitPortal);
-
-	    newRoom.activate(gs, currentRoom);
-	    spawnPoint = newRoom.findSpawnPoint(gs, player, currentRoom);
-	    player.setPos(spawnPoint[0], spawnPoint[1]);
-	    currentRoom = newRoom;
-	    // console.log("Loaded room: " + JSON.stringify(currentRoom));
+	if ( spec.origin < 10200 ){
+	    spec.origin += 10;
 	}
+
+	/*
+	for ( i = 0; i < hurdles.length; i += 1 ) {
+	    if ( hurdles[i].pos[0] < spec.origin ||
+		 hurdles[i].pos[0] > spec.origin + gs.width ) {
+		     gs.delEntity( hurdles[i] );
+	    }
+	    else {
+		gs.addEntity( hurdles[i] );
+	    }
+	}
+	 */
     };
 
     gs.addEntity({
@@ -55,28 +43,16 @@ var createLevel = function(gs, spec) {
     });
 };
 
-var createRooms = function(gs, blueprint) {
+var createHurdles = function(gs, hurdleList, height) {
     var i;
-    var room,
-	rooms = [];
+    var hurdle,
+	hurdles = [];
 
-    for (i = 0; i < blueprint.length; i += 1) {
-	room = Room(gs, blueprint[i]);
-	rooms.push(room);
+    for (i = 0; i < hurdleList.length; i += 1) {
+	hurdle = Hurdle([hurdleList[i], height]);
+	gs.addEntity(hurdle);
+	hurdles.push(hurdle);
     }
 
-    return rooms;
-};
-
-// works only for axis-aligned portals
-var findRoomFromPortal = function(rooms, roomName, portal) {
-    var i, j, destinationPortal;
-
-    for (i = 0; i < rooms.length; i += 1) {
-	if (rooms[i].getName() === portal.to) {
-	    return rooms[i];
-	}
-    }
-
-    throw "Unable to find room named " + portal.to;
+    return hurdles;
 };

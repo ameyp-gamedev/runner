@@ -4,8 +4,8 @@ html, body {
     //overflow: hidden;
 }
 #surface {
-    width: 704px;
-    height: 704px;
+    width: 800px;
+    height: 400px;
     position: absolute;
-    //border: 1px solid;
+    border: 1px solid;
 }

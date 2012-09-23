@@ -1,5 +1,5 @@
 var Hurdle = function(pos) {
-    var p = new Sprite(["center", "center"],
+    var p = new Sprite(["center", "bottom"],
 		       {
 			   stand: [["img/hurdle.png", 0]]
 		       },
@@ -8,17 +8,24 @@ var Hurdle = function(pos) {
 		       }
 		      );
 
+    var update = function() {
+	pos[0] -= 10;
+    };
+
     var draw = function(c) {
-	c.fillRect(origin.x, origin.y, bounds.x, bounds.y);
+	p.draw(c, pos);
     };
 
     var get_collision_aabb = function() {
-	return [origin.x, origin.y, bounds.x, bounds.y];
+	return p.aabb(pos);
     };
 
     return {
+	type: "hurdle",
+	pos: pos,
 	draw: draw,
-	get_collision_aabb: get_collision_aabb,
-	opague: true
+	update: update,
+	priority: 3,
+	get_collision_aabb: get_collision_aabb
     };
 };
