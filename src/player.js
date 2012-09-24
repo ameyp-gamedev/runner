@@ -46,7 +46,7 @@ function Player(gs, posX, posY) {
     };
 
     var collide_aabb = function(who) {
-	if ( who.hasOwnProperty('type') &&
+	if ( who.hasOwnProperty("type") &&
 	     who.type === "floor" ) {
 		 if (velocity < 0) {
 		     velocity = 0;
@@ -54,6 +54,7 @@ function Player(gs, posX, posY) {
 		 }
 	     }
 
+	/*
 	if (who.hasOwnProperty('opague') &&
 	    who.opague) {
 	    var ab = get_collision_aabb();
@@ -108,6 +109,7 @@ function Player(gs, posX, posY) {
 		vx = 0;
 	    }
 	}
+	 */
     };
 
     // Up pressed
