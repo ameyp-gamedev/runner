@@ -13,15 +13,14 @@ var startGame = function () {
 	]
     };
 
-    loadSprites();
     createLevel( gs, levelData );
 };
 
 var loadSprites = function() {
     Sprite.preload([
 	"img/player.png",
-	"img/hurdle_vert.png",
-	"img/hurdle_hori.png",
+	"img/hurdle-vert.png",
+	"img/hurdle-hori.png",
 	"img/background.png"
-    ]);
+    ], startGame);
 };
