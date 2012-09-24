@@ -13,8 +13,8 @@ var startGame = function () {
 	]
     };
 
-    createLevel( gs, levelData );
     loadSprites();
+    createLevel( gs, levelData );
 };
 
 var loadSprites = function() {
