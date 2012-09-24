@@ -1,7 +1,10 @@
 var Hurdle = function(pos) {
+    var fallen = false;
+
     var p = new Sprite(["center", "bottom"],
 		       {
-			   stand: [["img/hurdle.png", 0]]
+			   stand: [["img/hurdle-vert.png", 0]],
+			   fall: [["img/hurdle-hori.png", 0]]
 		       },
 		       function() {
 			   p.action("stand");
@@ -20,12 +23,25 @@ var Hurdle = function(pos) {
 	return p.aabb(pos);
     };
 
+    var collide_aabb = function(who) {
+	if ( who.hasOwnProperty("type") &&
+	     who.type === "player" &&
+	     fallen === false) {
+	    p.action("fall");
+	    pos[0] += 8;
+	    fallen = true;
+	}
+    };
+
     return {
 	type: "hurdle",
 	pos: pos,
+
 	draw: draw,
 	update: update,
 	priority: 3,
-	get_collision_aabb: get_collision_aabb
+
+	get_collision_aabb: get_collision_aabb,
+	collide_aabb: collide_aabb
     };
 };

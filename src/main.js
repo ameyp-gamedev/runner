@@ -20,7 +20,8 @@ var startGame = function () {
 var loadSprites = function() {
     Sprite.preload([
 	"img/player.png",
-	"img/hurdle.png",
+	"img/hurdle_vert.png",
+	"img/hurdle_hori.png",
 	"img/background.png"
     ]);
 };

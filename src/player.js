@@ -140,6 +140,7 @@ function Player(gs, posX, posY) {
 	keyDown_39: keyDown_39,
 
 	// location
-	pos: pos
+	pos: pos,
+	type: "player"
     };
 }
