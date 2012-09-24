@@ -19,7 +19,7 @@ var createLevel = function(gs, spec) {
 	var i = 0;
 
 	collide.aabb([player], [floor]);
-	collide.aabb([player], [hurdles]);
+	collide.aabb([player], hurdles);
 
 	if ( spec.origin < 10200 ){
 	    spec.origin += 10;

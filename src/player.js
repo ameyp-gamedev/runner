@@ -46,10 +46,13 @@ function Player(gs, posX, posY) {
     };
 
     var collide_aabb = function(who) {
-	if (velocity < 0) {
-	    velocity = 0;
-	    pos[1] = posY;
-	}
+	if ( who.hasOwnProperty('type') &&
+	     who.type === "floor" ) {
+		 if (velocity < 0) {
+		     velocity = 0;
+		     pos[1] = posY;
+		 }
+	     }
 
 	if (who.hasOwnProperty('opague') &&
 	    who.opague) {
