@@ -1,10 +1,10 @@
 var Floor = function(gs, width, height, spec) {
-    var p = new Sprite(["center", "bottom"],
+    var p = Sprite(["center", "bottom"],
 		       {
 			   stand: [["img/background.png", 0]]
 		       },
 		       function() {
-			   p.action("stand");
+			   p.activate("stand");
 		       }
 		      );
 

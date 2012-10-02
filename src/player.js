@@ -12,17 +12,17 @@ function Player(gs, posX, posY) {
     var jumpHeight = 48;
     var velocity = 0;
 
-    var p = new Sprite(["center", "bottom"],
+    var p = Sprite(["center", "bottom"],
 		       {
 			   stand: [["img/player.png", 0]]
 		       },
 		       function() {
-			   p.action("stand");
+			   p.activate("stand");
 		       }
 		      );
 
     var updateAnimation = function() {
-	p.action("stand");
+	p.activate("stand");
     };
 
     var update = function() {

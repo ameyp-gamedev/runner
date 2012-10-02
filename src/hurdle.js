@@ -1,13 +1,13 @@
 var Hurdle = function(pos) {
     var fallen = false;
 
-    var p = new Sprite(["center", "bottom"],
+    var p = Sprite(["center", "bottom"],
 		       {
 			   stand: [["img/hurdle-vert.png", 0]],
 			   fall: [["img/hurdle-hori.png", 0]]
 		       },
 		       function() {
-			   p.action("stand");
+			   p.activate("stand");
 		       }
 		      );
 
@@ -27,7 +27,7 @@ var Hurdle = function(pos) {
 	if ( who.hasOwnProperty("type") &&
 	     who.type === "player" &&
 	     fallen === false) {
-	    p.action("fall");
+	    p.activate("fall");
 	    pos[0] += 8;
 	    fallen = true;
 	}
