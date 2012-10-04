@@ -12,14 +12,15 @@ function Player(gs, posX, posY) {
     var jumpHeight = 48;
     var velocity = 0;
 
-    var p = Sprite(["center", "bottom"],
-		       {
-			   stand: [["img/player.png", 0]]
-		       },
-		       function() {
-			   p.activate("stand");
-		       }
-		      );
+    var p = Sprite({
+	anchor: ["center", "bottom"],
+	frames: {
+	    stand: [["img/player.png", 0]]
+	},
+	callback: function() {
+	    p.activate("stand");
+	}
+    });
 
     var updateAnimation = function() {
 	p.activate("stand");

@@ -1,12 +1,14 @@
 var Floor = function(gs, width, height, spec) {
-    var p = Sprite(["center", "bottom"],
-		       {
-			   stand: [["img/background.png", 0]]
-		       },
-		       function() {
-			   p.activate("stand");
-		       }
-		      );
+    var p = Sprite({
+	anchor: ["center", "bottom"],
+	section: [],
+	frames: {
+	    stand: [["img/background.png", 0]]
+	},
+	callback: function() {
+	    p.activate("stand");
+	}
+    });
 
     var draw = function(c) {
 	p.draw(c,

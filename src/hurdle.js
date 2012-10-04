@@ -1,15 +1,16 @@
 var Hurdle = function(pos) {
     var fallen = false;
 
-    var p = Sprite(["center", "bottom"],
-		       {
-			   stand: [["img/hurdle-vert.png", 0]],
-			   fall: [["img/hurdle-hori.png", 0]]
-		       },
-		       function() {
-			   p.activate("stand");
-		       }
-		      );
+    var p = Sprite({
+	anchor: ["center", "bottom"],
+	frames: {
+	    stand: [["img/hurdle-vert.png", 0]],
+	    fall: [["img/hurdle-hori.png", 0]]
+	},
+	callback: function() {
+	    p.activate("stand");
+	}
+    });
 
     var update = function() {
 	pos[0] -= 10;
