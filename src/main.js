@@ -1,5 +1,12 @@
 var startGame = function () {
     var canvas = $('canvas').get(0);
+
+    var canvasSupported = !!window.HTMLCanvasElement;
+
+    if ( !canvasSupported ) {
+	$('div#content').html("<h1>Your browser does not support canvas, please upgrade to a modern browser</h1>");
+	return;
+    }
     var gs = new JSGameSoup(canvas, 30);
 
     //$("body").addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
@@ -18,9 +25,7 @@ var startGame = function () {
 
 var loadSprites = function() {
     Sprite.preload([
-	"img/player.png",
-	"img/hurdle-vert.png",
-	"img/hurdle-hori.png",
+	"img/sheet.png",
 	"img/background.png"
     ], startGame);
 };
