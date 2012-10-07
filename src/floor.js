@@ -1,9 +1,9 @@
 var Floor = function(gs, width, height, spec) {
     var p = Sprite({
-	anchor: ["center", "bottom"],
+	anchor: [],
 	section: [],
 	frames: {
-	    stand: [["img/background.png", 0]]
+	    stand: [["img/background.png", [], 0]]
 	},
 	callback: function() {
 	    p.activate("stand");

@@ -15,7 +15,7 @@ function Player(gs, posX, posY) {
     var p = Sprite({
 	anchor: ["center", "bottom"],
 	frames: {
-	    stand: [["img/player.png", 0]]
+	    stand: [["img/sheet.png", [48, 0, 32, 32], 0]]
 	},
 	callback: function() {
 	    p.activate("stand");

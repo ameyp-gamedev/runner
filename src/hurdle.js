@@ -4,8 +4,8 @@ var Hurdle = function(pos) {
     var p = Sprite({
 	anchor: ["center", "bottom"],
 	frames: {
-	    stand: [["img/hurdle-vert.png", 0]],
-	    fall: [["img/hurdle-hori.png", 0]]
+	    stand: [["img/sheet.png", [0, 0, 16, 32], 0]],
+	    fall: [["img/sheet.png", [16, 16, 32, 16], 0]]
 	},
 	callback: function() {
 	    p.activate("stand");
